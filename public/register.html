@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <style>
+        .container {
+            position: relative;
+        }
+
+        .bg-video {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .box {
+            background:rgba(255, 255, 255, 0.5);
+            width: 70%;
+            min-height: 300px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #aaa;
+            margin: 80px auto;
+            padding: 20px;
+        }
+        span.help-block{
+            background:red;
+            border-radius:10px;
+            padding-left:20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>欢迎注册</h1>
+    <!--用作背景的视频-->
+    <video class="bg-video" src="res/snow.mp4" autoplay loop muted width="100%"></video>
+    <!--用作盛放表单的盒子，半透明背景-->
+    <div class="box">
+        <form class="form-horizontal" id="form-register">
+            <!--用户名-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="uname" class="control-label">用户名：</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="请输入用户名" autofocus name="uname" id="uname" required/>
+                </div>
+                <div class="col-sm-5">
+                    <span class="help-block">用户名不能为空</span>
+                </div>
+            </div>
+
+            <!--密码-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="upwd" class="control-label">密码：</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="请输入密码" autofocus name="upwd" id="upwd" required
+                           minlength="6" maxlength="12">
+                </div>
+                <div class="col-sm-5">
+                    <span class="help-block">密码不能为空</span>
+                </div>
+            </div>
+
+            <!--电子邮件-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="emali" class="control-label">电子邮件：</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="email" class="form-control" placeholder="电子邮件" autofocus name="emali" id="emali" required>
+                </div>
+            </div>
+            <!--个人主页-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="home" class="control-label">个人主页：</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" placeholder="输入个人首页" autofocus name="home" id="home" required>
+                </div>
+
+            </div>
+
+            <!--年龄-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="age" class="control-label">年龄：</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" placeholder="输入年龄" autofocus name="age" id="age" required
+                           min="16" max="30">
+
+                </div>
+
+            </div>
+            <!--出生日期-->
+            <div class="form-group">
+                <div class="col-sm-2">
+                    <label for="date" class="control-label">出生日期：</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="date" class="form-control"  autofocus name="date" id="date" required>
+                </div>
+            </div>
+            <!--提交按钮-->
+            <div class="form-group">
+                <div class="col-sm-5 col-sm-offset-2">
+                    <input type="button" value="提交注册信息" class="btn btn-success btn-block" id="btn">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+    $("#btn").click(function(){
+        var data=$("#form-register").serialize();
+        $.ajax({
+            type:'POST',
+            url:'user/register',
+            data:data,
+            success:function(result){
+                if(result.code===200){
+                    alert('注册成功3s钟跳转到登录页面');
+                    sessionStorage['logunmae']=uname.value;
+                    sessionStorage['logupwd']=upwd.value;
+                    setTimeout(function(){
+                        location.href='login.html';
+                    },3000);
+                }else{
+                    alert('注册失败')
+                }
+            }
+
+        })
+    })
+</script>
+</body>
+</html>

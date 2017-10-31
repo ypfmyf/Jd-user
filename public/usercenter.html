@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="jd_index.css"/>
+</head>
+<body>
+<!--页头内容容器-->
+<div id="header"></div>
+<!--主体内容容器-->
+<div id="main">
+    <!--主体左侧的附加导航-->
+    <div class="left">
+        <h3>用户中心</h3>
+        <ul class="affix">
+            <li class="active"><a href="#my-order">我的订单</a></li>
+            <li><a href="#buy-stat-canvas">消费统计(Canvas版)</a></li>
+            <li><a href="#buy-stat-svg">消费统计(SVG版)</a></li>
+            <li><a href="#luck-lottery">幸运抽奖</a></li>
+        </ul>
+    </div>
+    <!--主体中央的主要内容-->
+    <div class="middle">
+        <div id="my-order" class="active">
+            <table id="table-order" width="100%" border="1">
+                <thead>
+                <tr>
+                    <th>订单信息</th>
+                    <th>收货人</th>
+                    <th>订单金额</th>
+                    <th>订单时间</th>
+                    <th>订单状态</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<tr>
+                   <td colspan="6">订单编号：999999999</td>
+                 </tr>
+                 <tr>
+                   <td>
+                     <a href="#"><img src="images/phone/phone_01.jpg" style="width:60px"></a>
+                     <a href="#"><img src="images/phone/phone_02.jpg" style="width:60px"></a>
+                   </td>
+                   <td>强东</td>
+                   <td>￥39.90<br>在线支付</td>
+                   <td>2010-10-25<br>11:25:33</td>
+                   <td>等待发货</td>
+                   <td>
+                     <a href="#">查看</a><br/>
+                     <a href="#">评价</a>
+                   </td>
+                 </tr>-->
+                </tbody>
+            </table>
+        </div>
+        <div id="buy-stat-canvas">消费统计1....</div>
+        <div id="buy-stat-svg">消费统计2....</div>
+        <div id="luck-lottery">幸运抽奖....</div>
+    </div>
+</div>
+<!--页尾内容容器-->
+<div id="footer"></div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="js/fusioncharts.js"></script>
+<script src="js/usercenter.js"></script>
+</body>
+</html>

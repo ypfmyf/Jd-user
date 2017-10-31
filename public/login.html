@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> 京东商城－产品列表 </title>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/jd.css">
+    <link rel="stylesheet" href="css/product.css">
+</head>
+
+<body>
+<div id="header"></div>
+<div id="main">
+    <div class="affix1">
+        <h4>商家精选</h4>
+    </div>
+    <div class="container productlist">
+        <!-- 排序部分 -->
+        <header>
+            <ul>
+                <li><a href="" class="curr">销量</a></li>
+                <li><a href="">价格</a></li>
+                <li><a href="">评论数</a></li>
+                <li><a href="">上架时间</a></li>
+            </ul>
+            <ol>
+                <li><a href="">&lt;</a></li>
+                <li><a href="">&gt;</a></li>
+            </ol>
+        </header>
+        <!-- 产品列表 -->
+        <section id="plist">
+            <ul>
+                <!-- ajax+js添加 -->
+            </ul>
+            <ol class="pager">
+                <!-- ajax+js添加 -->
+            </ol>
+        </section>
+    </div>
+</div>
+<!--模态登录对话框-->
+
+<div id="footer"></div>
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <h4>用户登录</h4>
+            <p class="alert">
+                请在此处输入您的注册信息。
+            </p>
+            <form id="login-form">
+                <input type="text" placeholder="请输入登录用户名" name="uname" value="" id="uname">
+                <input type="password" placeholder="请输入登录密码" name="upwd" value="" id="upwd">
+                <input type="button" value="提交登录信息" id="bt-login">
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+        var $bt=$("#bt-login");
+        $bt.click(function(){
+            var data=$("#login-form").serialize();
+            $.ajax({
+                type:"POST",
+                url:"/user/login",
+                data:data,
+                success:function(result){
+                    if(result.code===500){
+                        alert('登入失败'+result.msg);
+                    }else if(result.code===400){
+                        alert('登入失败'+result.msg);
+                    }
+                    else if(result.code===200){
+                        alert('登入成功3s钟跳转到首页'+result.uid);
+                        sessionStorage['loginUname'] = $('[name="uname"]').val();
+                        sessionStorage['loginUid'] = result.uid;
+                        setTimeout(function(){
+                            location.href='index.html';
+                        },3000);
+                    }
+                }
+            });
+        });
+
+
+</script>
+</body>
+</html>
